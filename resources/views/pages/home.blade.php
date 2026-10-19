@@ -33,7 +33,7 @@
                         Lima mahakarya wewangian berlapis botol logam mulia: Imperium • Inferno • Marbella • Nautilus • Untamed
                     </p>
                     <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
-                        <a href="{{ route('products.index', ['category' => 'sunforged-collection']) }}" 
+                        <a href="{{ route('sunforged') }}" 
                            class="bg-brand-gold hover:bg-brand-goldDark text-black text-xs font-bold uppercase tracking-[0.2em] px-8 py-3.5 rounded shadow-xl transition-all transform hover:-translate-y-0.5">
                             Jelajahi Koleksi
                         </a>
@@ -397,3 +397,4 @@
 </section>
 
 @endsection
+

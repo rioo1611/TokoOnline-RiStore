@@ -40,3 +40,4 @@ class ProductVariant extends Model
         return $this->original_price ? 'Rp ' . number_format($this->original_price, 0, ',', '.') : null;
     }
 }
+

@@ -134,3 +134,4 @@ class CheckoutController extends Controller
         return view('pages.checkout.success', compact('order', 'waLink'));
     }
 }
+

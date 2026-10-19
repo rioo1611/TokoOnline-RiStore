@@ -48,3 +48,4 @@ class Order extends Model
         return 'Rp ' . number_format($this->total, 0, ',', '.');
     }
 }
+

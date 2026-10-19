@@ -57,4 +57,16 @@ class HomeController extends Controller
             'latestReviews'
         ));
     }
+
+    public function sunforged()
+    {
+        $products = Product::whereHas('category', function ($q) {
+            $q->where('slug', 'sunforged-collection');
+        })->where('is_active', true)->with(['variants', 'reviews'])->get();
+
+        $category = Category::where('slug', 'sunforged-collection')->first();
+
+        return view('pages.sunforged', compact('products', 'category'));
+    }
 }
+

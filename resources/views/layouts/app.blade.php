@@ -120,23 +120,23 @@
                 <!-- Desktop Navigation Links (From Screenshot 1: HOME, PRODUCTS, CONTACT, CATALOGUE) -->
                 <nav class="hidden lg:flex items-center space-x-10">
                     <a href="{{ route('home') }}" 
-                       class="text-xs uppercase tracking-[0.2em] font-semibold text-neutral-800 hover:text-brand-goldDark transition-colors {{ request()->routeIs('home') ? 'border-b-2 border-black pb-1' : '' }}">
+                       class="text-xs uppercase tracking-[0.2em] font-semibold transition-colors {{ request()->routeIs('home') ? 'border-b-2 border-black pb-1 text-black font-bold' : 'text-neutral-800 hover:text-brand-goldDark' }}">
                         RUMAH
                     </a>
                     <a href="{{ route('products.index') }}" 
-                       class="text-xs uppercase tracking-[0.2em] font-semibold text-neutral-800 hover:text-brand-goldDark transition-colors {{ request()->routeIs('products.*') ? 'border-b-2 border-black pb-1' : '' }}">
+                       class="text-xs uppercase tracking-[0.2em] font-semibold transition-colors {{ request()->routeIs('products.*') ? 'border-b-2 border-black pb-1 text-black font-bold' : 'text-neutral-800 hover:text-brand-goldDark' }}">
                         PRODUK
                     </a>
-                    <a href="{{ route('products.index', ['category' => 'sunforged-collection']) }}" 
-                       class="text-xs uppercase tracking-[0.2em] font-semibold text-neutral-800 hover:text-brand-goldDark transition-colors">
+                    <a href="{{ route('sunforged') }}" 
+                       class="text-xs uppercase tracking-[0.2em] font-semibold transition-colors {{ request()->routeIs('sunforged') ? 'border-b-2 border-brand-goldDark pb-1 text-brand-goldDark font-bold' : 'text-neutral-800 hover:text-brand-goldDark' }}">
                         SUNFORGED
                     </a>
                     <a href="{{ route('about') }}" 
-                       class="text-xs uppercase tracking-[0.2em] font-semibold text-neutral-800 hover:text-brand-goldDark transition-colors {{ request()->routeIs('about') ? 'border-b-2 border-black pb-1' : '' }}">
+                       class="text-xs uppercase tracking-[0.2em] font-semibold transition-colors {{ request()->routeIs('about') ? 'border-b-2 border-black pb-1 text-black font-bold' : 'text-neutral-800 hover:text-brand-goldDark' }}">
                         TENTANG KAMI
                     </a>
                     <a href="{{ route('contact') }}" 
-                       class="text-xs uppercase tracking-[0.2em] font-semibold text-neutral-800 hover:text-brand-goldDark transition-colors {{ request()->routeIs('contact') ? 'border-b-2 border-black pb-1' : '' }}">
+                       class="text-xs uppercase tracking-[0.2em] font-semibold transition-colors {{ request()->routeIs('contact') ? 'border-b-2 border-black pb-1 text-black font-bold' : 'text-neutral-800 hover:text-brand-goldDark' }}">
                         KONTAK
                     </a>
                 </nav>
@@ -179,7 +179,7 @@
              class="lg:hidden border-t border-neutral-200 bg-white px-6 py-6 space-y-4 shadow-xl">
             <a href="{{ route('home') }}" class="block text-sm uppercase tracking-widest font-semibold text-neutral-800 py-2 border-b border-neutral-100">RUMAH</a>
             <a href="{{ route('products.index') }}" class="block text-sm uppercase tracking-widest font-semibold text-neutral-800 py-2 border-b border-neutral-100">PRODUK & KATALOG</a>
-            <a href="{{ route('products.index', ['category' => 'sunforged-collection']) }}" class="block text-sm uppercase tracking-widest font-semibold text-brand-goldDark py-2 border-b border-neutral-100">SUNFORGED COLLECTION</a>
+            <a href="{{ route('sunforged') }}" class="block text-sm uppercase tracking-widest font-bold text-brand-goldDark py-2 border-b border-neutral-100">SUNFORGED COLLECTION</a>
             <a href="{{ route('products.index', ['gender' => 'women']) }}" class="block text-sm uppercase tracking-widest font-semibold text-neutral-800 py-2 border-b border-neutral-100">UNTUK WANITA</a>
             <a href="{{ route('products.index', ['gender' => 'men']) }}" class="block text-sm uppercase tracking-widest font-semibold text-neutral-800 py-2 border-b border-neutral-100">UNTUK PRIA</a>
             <a href="{{ route('about') }}" class="block text-sm uppercase tracking-widest font-semibold text-neutral-800 py-2 border-b border-neutral-100">TENTANG KAMI</a>
@@ -241,7 +241,7 @@
                     <ul class="space-y-2.5 text-xs">
                         <li><a href="{{ route('home') }}" class="hover:text-white transition-colors">Beranda</a></li>
                         <li><a href="{{ route('products.index') }}" class="hover:text-white transition-colors">Semua Produk</a></li>
-                        <li><a href="{{ route('products.index', ['category' => 'sunforged-collection']) }}" class="hover:text-brand-gold transition-colors">Sunforged Collection</a></li>
+                        <li><a href="{{ route('sunforged') }}" class="hover:text-brand-gold transition-colors font-semibold text-brand-gold">Sunforged Collection</a></li>
                         <li><a href="{{ route('products.index', ['gender' => 'women']) }}" class="hover:text-white transition-colors">Parfum Wanita</a></li>
                         <li><a href="{{ route('products.index', ['gender' => 'men']) }}" class="hover:text-white transition-colors">Parfum Pria</a></li>
                     </ul>
@@ -605,3 +605,4 @@
     @stack('scripts')
 </body>
 </html>
+

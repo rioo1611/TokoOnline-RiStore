@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Home & Catalog
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/sunforged', [HomeController::class, 'sunforged'])->name('sunforged');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/api/products/{id}/quick-view', [ProductController::class, 'quickView'])->name('products.quick-view');
