@@ -10,26 +10,65 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Product::where('is_active', true)->with(['category', 'variants']);
+        $baseQuery = Product::where('is_active', true);
+        $totalProductsCount = (clone $baseQuery)->count();
 
-        // Filter by Category
+        // Calculate DB min and max price for the budget slider
+        $minPriceInDb = (int) ((clone $baseQuery)->min('price') ?? 0);
+        $maxPriceInDb = (int) ((clone $baseQuery)->max('price') ?? 1000000);
+
+        // Availability counts in current context
+        $inStockCount = (clone $baseQuery)->where('stock', '>', 0)->where('is_sold_out', false)->count();
+        $outOfStockCount = (clone $baseQuery)->where(function($q) {
+            $q->where('stock', '<=', 0)->orWhere('is_sold_out', true);
+        })->count();
+
+        $query = (clone $baseQuery)->with(['category', 'variants']);
+
+        // 1. Filter by Category
         if ($request->filled('category')) {
             $query->whereHas('category', function ($q) use ($request) {
                 $q->where('slug', $request->category);
             });
         }
 
-        // Filter by Gender
+        // 2. Filter by Availability (Tersedianya)
+        $selectedAvailability = (array) $request->input('availability', []);
+        if (!empty($selectedAvailability)) {
+            $hasInStock = in_array('tersedia', $selectedAvailability);
+            $hasOutOfStock = in_array('stok_habis', $selectedAvailability);
+
+            if ($hasInStock && !$hasOutOfStock) {
+                $query->where('stock', '>', 0)->where('is_sold_out', false);
+            } elseif ($hasOutOfStock && !$hasInStock) {
+                $query->where(function($q) {
+                    $q->where('stock', '<=', 0)->orWhere('is_sold_out', true);
+                });
+            }
+        }
+
+        // 3. Filter by Budget / Price Range (Harga)
+        $currentMinPrice = $request->filled('min_price') ? (float) $request->min_price : 0;
+        $currentMaxPrice = $request->filled('max_price') ? (float) $request->max_price : $maxPriceInDb;
+
+        if ($request->filled('min_price') && (float)$request->min_price > 0) {
+            $query->where('price', '>=', (float) $request->min_price);
+        }
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', (float) $request->max_price);
+        }
+
+        // 4. Filter by Gender
         if ($request->filled('gender') && $request->gender !== 'all') {
             $query->where('gender', $request->gender);
         }
 
-        // Filter by Scent Family
+        // 5. Filter by Scent Family
         if ($request->filled('family') && $request->family !== 'all') {
             $query->where('scent_family', 'like', '%' . $request->family . '%');
         }
 
-        // Search Keyword
+        // 6. Search Keyword
         if ($request->filled('search')) {
             $keyword = $request->search;
             $query->where(function ($q) use ($keyword) {
@@ -41,9 +80,15 @@ class ProductController extends Controller
             });
         }
 
-        // Sorting
+        // 7. Sorting (Urutkan Berdasarkan)
         $sort = $request->get('sort', 'popular');
         switch ($sort) {
+            case 'az':
+                $query->orderBy('name', 'asc');
+                break;
+            case 'za':
+                $query->orderBy('name', 'desc');
+                break;
             case 'price_low':
                 $query->orderBy('price', 'asc');
                 break;
@@ -56,17 +101,33 @@ class ProductController extends Controller
             case 'newest':
                 $query->latest();
                 break;
+            case 'bestseller':
+                $query->orderBy('is_bestseller', 'desc');
+                break;
             case 'popular':
             default:
                 $query->orderBy('is_popular', 'desc')->orderBy('rating', 'desc');
                 break;
         }
 
+        $filteredCount = (clone $query)->count();
         $products = $query->paginate(12)->withQueryString();
         $categories = Category::orderBy('sort_order')->get();
-        $totalCount = Product::where('is_active', true)->count();
 
-        return view('pages.products.index', compact('products', 'categories', 'totalCount'));
+        return view('pages.products.index', compact(
+            'products',
+            'categories',
+            'totalProductsCount',
+            'filteredCount',
+            'minPriceInDb',
+            'maxPriceInDb',
+            'currentMinPrice',
+            'currentMaxPrice',
+            'inStockCount',
+            'outOfStockCount',
+            'selectedAvailability',
+            'sort'
+        ));
     }
 
     public function show($slug)
