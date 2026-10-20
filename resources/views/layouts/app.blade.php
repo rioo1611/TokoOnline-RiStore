@@ -446,8 +446,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <!-- Image -->
                 <div class="bg-neutral-100 p-8 flex items-center justify-center relative">
-                    <span x-show="quickViewData.badge" x-text="quickViewData.badge" class="absolute top-4 left-4 bg-red-600 text-white text-[11px] font-bold px-2 py-0.5 rounded"></span>
-                    <img :src="quickViewData.image" :alt="quickViewData.name" class="max-h-72 object-contain drop-shadow-xl">
+                    <span x-show="quickViewData.badge" x-text="quickViewData.badge" class="absolute top-4 left-4 z-20 pointer-events-none bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm"></span>
+                    <img :src="quickViewData.image" :alt="quickViewData.name" class="max-h-72 object-contain relative z-10">
                 </div>
 
                 <!-- Info -->

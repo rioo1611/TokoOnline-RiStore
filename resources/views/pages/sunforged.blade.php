@@ -144,11 +144,11 @@
             <div class="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
                 
                 <div class="relative bg-neutral-900 rounded-2xl p-6 flex items-center justify-center h-64 overflow-hidden">
-                    <span class="absolute top-4 left-4 bg-brand-gold text-black text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
+                    <span class="absolute top-4 left-4 z-20 pointer-events-none bg-brand-gold text-black text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider shadow-sm">
                         {{ $product->badge }}
                     </span>
-                    <a href="{{ route('products.show', $product->slug) }}" class="w-full h-full flex items-center justify-center">
-                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="max-h-52 object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_15px_25px_rgba(212,175,55,0.3)]">
+                    <a href="{{ route('products.show', $product->slug) }}" class="w-full h-full flex items-center justify-center relative z-10">
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="max-h-48 max-w-[85%] object-contain group-hover:scale-110 transition-transform duration-500">
                     </a>
                 </div>
 

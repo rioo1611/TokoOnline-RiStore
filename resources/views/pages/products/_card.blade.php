@@ -5,27 +5,27 @@
         
         <!-- Badge (Screenshot 2: -52%, Screenshot 3: Terjual habis) -->
         @if($product->is_sold_out)
-            <span class="absolute top-3 left-3 bg-neutral-500 text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wide uppercase">
+            <span class="absolute top-3 left-3 z-20 pointer-events-none bg-neutral-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wider uppercase shadow-sm">
                 Terjual habis
             </span>
         @elseif($product->badge)
-            <span class="absolute top-3 left-3 {{ str_contains($product->badge, '%') ? 'bg-red-600' : 'bg-neutral-900' }} text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-wide uppercase">
+            <span class="absolute top-3 left-3 z-20 pointer-events-none {{ str_contains($product->badge, '%') ? 'bg-red-600' : 'bg-neutral-900' }} text-white text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wider uppercase shadow-sm">
                 {{ $product->badge }}
             </span>
         @endif
 
         <!-- Quick View Overlay Button -->
         <button @click="openQuickView({{ $product->id }})" 
-                class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 bg-white/95 hover:bg-black hover:text-white text-neutral-800 p-2 rounded-full shadow-md transition-all duration-300"
+                class="absolute bottom-3 right-3 z-20 opacity-0 group-hover:opacity-100 bg-white/95 hover:bg-black hover:text-white text-neutral-800 p-2 rounded-full shadow-md transition-all duration-300"
                 title="Lihat Cepat">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
         </button>
 
-        <!-- Product Image -->
-        <a href="{{ route('products.show', $product->slug) }}" class="w-full h-full flex items-center justify-center">
+        <!-- Product Image (Clean Transparent PNG without Box Shadow Collisions) -->
+        <a href="{{ route('products.show', $product->slug) }}" class="w-full h-full flex items-center justify-center relative z-10">
             <img src="{{ asset($product->image) }}" 
                  alt="{{ $product->name }}" 
-                 class="max-h-48 object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-md">
+                 class="max-h-40 max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500">
         </a>
     </div>
 

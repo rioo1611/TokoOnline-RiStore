@@ -39,18 +39,18 @@
         <div class="lg:col-span-6 sticky top-28">
             <div class="bg-[#F8F8F8] rounded-3xl p-8 border border-neutral-200 flex items-center justify-center min-h-[460px] relative overflow-hidden">
                 @if($product->is_sold_out)
-                    <span class="absolute top-6 left-6 bg-neutral-600 text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+                    <span class="absolute top-6 left-6 z-20 pointer-events-none bg-neutral-600 text-white text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider shadow-sm">
                         Terjual Habis
                     </span>
                 @elseif($product->badge)
-                    <span class="absolute top-6 left-6 {{ str_contains($product->badge, '%') ? 'bg-red-600' : 'bg-neutral-900' }} text-white text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
+                    <span class="absolute top-6 left-6 z-20 pointer-events-none {{ str_contains($product->badge, '%') ? 'bg-red-600' : 'bg-neutral-900' }} text-white text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider shadow-sm">
                         {{ $product->badge }}
                     </span>
                 @endif
 
                 <img src="{{ asset($product->image) }}" 
                      alt="{{ $product->name }}" 
-                     class="max-h-[380px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105">
+                     class="max-h-[380px] object-contain transition-transform duration-500 hover:scale-105 relative z-10">
             </div>
 
             <!-- Authentic Trust Badges -->
