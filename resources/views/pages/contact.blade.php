@@ -27,7 +27,7 @@
             </div>
 
             <div class="space-y-4">
-                <a href="https://wa.me/6281234567890?text=Halo%20Official%20Mykonos,%20saya%20ingin%20konsultasi%20parfum" 
+                <a href="https://wa.me/6281289306252?text=Halo%20Official%20Mykonos,%20saya%20ingin%20konsultasi%20parfum" 
                    target="_blank" 
                    class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center space-x-4 hover:bg-emerald-100/70 transition-colors">
                     <div class="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl">
@@ -35,21 +35,22 @@
                     </div>
                     <div>
                         <div class="text-xs font-bold uppercase tracking-wider text-emerald-800">WhatsApp Customer Care</div>
-                        <div class="text-sm font-bold text-neutral-900">+62 812-3456-7890</div>
+                        <div class="text-sm font-bold text-neutral-900">+62 812-8930-6252</div>
                         <div class="text-[11px] text-neutral-500">Respon cepat (Rata-rata &lt; 5 menit)</div>
                     </div>
                 </a>
 
-                <div class="p-5 rounded-2xl bg-white border border-neutral-200 flex items-center space-x-4">
+                <a href="mailto:satrioputraumbara@gmail.com" 
+                   class="p-5 rounded-2xl bg-white border border-neutral-200 flex items-center space-x-4 hover:border-black transition-colors block">
                     <div class="w-12 h-12 rounded-full bg-neutral-100 text-neutral-800 flex items-center justify-center text-xl">
                         ✉️
                     </div>
                     <div>
                         <div class="text-xs font-bold uppercase tracking-wider text-neutral-500">Email Korespondensi</div>
-                        <div class="text-sm font-bold text-neutral-900">support@officialmykonos.com</div>
+                        <div class="text-sm font-bold text-neutral-900">satrioputraumbara@gmail.com</div>
                         <div class="text-[11px] text-neutral-500">Pertanyaan kemitraan & pesanan khusus</div>
                     </div>
-                </div>
+                </a>
 
                 <div class="p-5 rounded-2xl bg-white border border-neutral-200 flex items-center space-x-4">
                     <div class="w-12 h-12 rounded-full bg-neutral-100 text-neutral-800 flex items-center justify-center text-xl">

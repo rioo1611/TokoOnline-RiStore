@@ -127,7 +127,7 @@ class CheckoutController extends Controller
             ->firstOrFail();
 
         // Build WhatsApp message link
-        $waPhone = '6281234567890'; // Official Mykonos CS WhatsApp
+        $waPhone = '6281289306252'; // Official Mykonos CS WhatsApp
         $message = "Halo Official Mykonos, saya ingin konfirmasi pesanan dengan nomor order: *{$order->order_number}* atas nama *{$order->customer_name}* senilai *Rp " . number_format($order->total, 0, ',', '.') . "*. Terima kasih!";
         $waLink = "https://wa.me/{$waPhone}?text=" . urlencode($message);
 
